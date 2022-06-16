@@ -1,0 +1,13 @@
+.navbar{
+  box-shadow: 0 0 15px 5px gray;
+  background-color: grey;
+
+}
+.container{
+  max-width: 100%;
+}
+
+#main{
+  background-color: rgb(173, 173, 173);
+  min-height:100vh;
+}
