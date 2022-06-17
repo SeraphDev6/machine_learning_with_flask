@@ -1,13 +1,12 @@
 import os
+from urllib.parse import urlparse
 import psycopg2
 
 class PostgresConnection:
   def __init__(self):
-    conn = psycopg2.connect(
-      host="localhost",
-      database="ML_with_flask",
-      user=os.environ['DB_USERNAME'],
-      password=os.environ['DB_PASSWORD'])
+    url = urlparse(os.environ.get('DATABASE_URL'))
+    db = "dbname=%s user=%s password=%s host=%s " % (url.path[1:], url.username, url.password, url.hostname)
+    conn = psycopg2.connect(db)
     self.connection = conn
   def query_db(self, query, data=None, verbose = False):
     with self.connection.cursor() as cursor:
