@@ -62,5 +62,5 @@ class User:
 
   @classmethod
   def save(cls,data):
-    query="INSERT INTO users(email, username, password) VALUES(%(email)s, %(username)s, %(password)s);"
+    query="INSERT INTO users(email, username, password) VALUES(%(email)s, %(username)s, %(password)s) RETURNING id;"
     return connectToPSQL().query_db(query,User.encrypt_password(data))

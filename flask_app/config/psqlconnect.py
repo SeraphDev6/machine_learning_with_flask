@@ -17,7 +17,7 @@ class PostgresConnection:
         executable = cursor.execute(query,data)
         if str(query).lower().find("insert") >= 0:
           self.connection.commit()
-          return cursor.lastrowid
+          return cursor.fetchone()[0]
         elif str(query).lower().find("select") >= 0:
           result = cursor.fetchall()
           return result

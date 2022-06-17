@@ -9,7 +9,7 @@ def register():
       return redirect('/')
     return render_template("register.html")
   if User.valid_reg(request.form):
-    session['user']=User.save(request.form)
+    session['user'] = User.save(request.form)
     return redirect("/")
 
 @app.route("/login", methods=["GET","POST"])
