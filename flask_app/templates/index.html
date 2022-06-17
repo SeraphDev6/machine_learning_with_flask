@@ -1,4 +1,12 @@
 {% extends "layout.html" %}
-{% block Content %}
-  <h1> HELLO WORLD</h1>
-{% endblock content %}
+{% block script %}
+<script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
+{% endblock %}
+{% block content %}
+<h2 class="text-center">Latest Ratings</h2>
+<div id='chart' class='chart'></div>
+<script type='text/javascript' defer>
+  var graphs = {{graph | safe}};
+  Plotly.plot('chart',graphs,{});
+</script>
+{% endblock %}

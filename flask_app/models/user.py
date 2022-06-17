@@ -52,11 +52,11 @@ class User:
 
   @staticmethod
   def encrypt_password(data):
-      hash=bcrypt.generate_password_hash(data['password'])
+      hash=bcrypt.generate_password_hash(data['password'].encode('utf8'))
       newData={
           'email':data['email'].lower(),
           'username':data['username'],
-          'password':hash
+          'password':hash.decode('utf8')
       }
       return newData
 

@@ -1,12 +1,18 @@
-var validators = {'username':false,'email':false,'password':false,'confirm_password':false}
+const validators = {'username':false,'email':false,'password':false,'confirm_password':false}
 $(document).ready(()=>{
     $('#submit').prop('disabled',true);
     Object.keys(validators).forEach(validator => {
         $(`#${validator}`).keyup(()=>{checkValid(validator)});
-        $(`#${validator}`).focusout(()=>{checkValid(validator)});
+        $(`#${validator}`).focusout(()=>{checkAllValid(validator)});
     });
 });
-function checkValid(id){
+
+const checkAllValid = () => {
+  Object.keys(validators).forEach(validator => {
+    checkValid(validator)
+  })
+}
+const checkValid = (id) => {
     var data = $("#regform").serialize()
     $.ajax({
             method:'POST',

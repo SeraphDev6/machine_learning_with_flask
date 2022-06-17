@@ -1,0 +1,21 @@
+{% extends 'layout.html' %}
+{% block script %}
+<script src="{{url_for('static', filename='js/ajax/train_form.js')}}"></script>
+{% endblock %}
+{% block content %}
+<div class="row p-4">
+  <div class="col-md-6 offset-md-3">
+    <form action="/" method="POST" class="card border p-4 my-2" id="trainform">
+      <p class="text-dark text-center"> How would you describe the mood of this color?</p>
+      <select name="mood" id="mood_select" class="form-select">
+        <option id="default_option" value="" selected hidden disabled>Select a mood</option>
+        {% for mood in moods %}
+          <option value="{{ mood.id }}">{{ mood.name }}</option>
+        {% endfor %}
+      </select>
+      <div id="train_message" class="text-danger text-center"></div>
+      <input type="submit" value="submit" id="submit" class="btn btn-primary btn-sm m-2" role="button">
+    </form>
+  </div>
+</div>
+{% endblock %}

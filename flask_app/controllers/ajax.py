@@ -39,6 +39,8 @@ def valid_confirm_password():
 def valid_login():
   user = User.get_by_email(request.form)
   if not user:
+    user = User.get_by_username({"username":request.form["email"]})
+  if not user:
     return render_template('partials/login.html')
   if not user.validate_pw(request.form['password']):
     return render_template('partials/login.html')
